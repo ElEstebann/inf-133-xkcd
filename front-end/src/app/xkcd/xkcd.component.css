@@ -1,0 +1,11 @@
+figure, img, figcaption {
+    margin: 1rem;
+}
+
+figcaption {
+    text-align: center;
+}
+
+img {
+    height: 60vh;
+}
