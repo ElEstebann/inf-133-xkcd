@@ -15,6 +15,25 @@ export class FetchXkcdService {
    */
   constructor() {}
 
+  // to pass data to another component
+  @Output() imageSrc = new EventEmitter<string>();
+  @Output() imageAlt = new EventEmitter<string>();
+  @Output() imageTitle = new EventEmitter<string>();
+
+  getRandomXKCD = async () => {
+    const URL = 'http://localhost:8000/randomXKCD';
+    try {
+      let res = await fetch(URL);
+      res = this.checkStatus(res);
+      const result = await res.json();
+      this.imageSrc.emit(result['img']);
+      this.imageAlt.emit(result['alt']);
+      this.imageTitle.emit(result['safe_title']);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   checkStatus(response: Response) {
     if (!response.ok) {
       throw Error('Error in request: ' + response.statusText);

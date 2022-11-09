@@ -20,8 +20,17 @@ app.use(cors("http://localhost:4200"));
  * Where 'comicId' is a random number between 1 and XKCD_MAX
  * Remember to implement error handling!
  */
-
-
+app.get("/randomXKCD", async (req, res) => {
+  const url = XKCD_BASE + getRandomInt(XKCD_MAX) + XKCD_JSON;
+  try {
+    let response = await fetch(url);
+    response = checkStatus(response);
+    const result = await response.json();
+    res.json(result);
+  } catch (err) {
+    handleError(res);
+  }
+});
 
 /**
  * this function generates a number from 1 to max(given)

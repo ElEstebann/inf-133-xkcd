@@ -21,8 +21,19 @@ export class AppComponent {
    * Also, perform property binding in app.component.html to see the result.
    */
   constructor(private fetchXkcdService: FetchXkcdService) {
-    
-  }
+    this.isLoading = true;
+    this.fetchXkcdService.imageSrc.subscribe((imgSrc) => {
+      this.imgSrc = imgSrc;
+    })
+    this.fetchXkcdService.imageAlt.subscribe((imgAlt) => {
+      this.imgAlt = imgAlt;
+    });
+    this.fetchXkcdService.imageTitle.subscribe((imgTitle) => {
+      this.imgTitle = imgTitle;
+    })
+    this.isLoading = false;
+  } 
+  
 
   ngOnInit(): void {
     this.fetchXkcdService.getRandomXKCD();

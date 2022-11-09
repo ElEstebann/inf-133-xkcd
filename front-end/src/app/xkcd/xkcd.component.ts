@@ -11,6 +11,10 @@ export class XkcdComponent implements OnInit {
    * Modify xkcd.component.html to allow property binding for src and alt
    * and use interpolation to output image safe_title to 'figcaption'
    */
+  @Input() imgSrc!: string;
+  @Input() imgAlt!: string;
+  @Input() imgTitle!: string;
+
   
   constructor() { }
 

@@ -2,11 +2,18 @@
   <app-header></app-header>
   <main class="flex center-x center-y">
     <!--TODO: Only display loading disc if not loading-->
-    <div class="spinner-border" role="status">
+    <div *ngIf="isLoading" class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
     <!--TODO: Pass in the data needed-->
-    <app-xkcd></app-xkcd>
+     
+    <app-xkcd
+    [imgSrc]="imgSrc"
+    [imgAlt]="imgAlt"
+    [imgTitle]="imgTitle"
+    >
+
+    </app-xkcd>
   </main>
   <app-footer></app-footer>
 </app-layout>
